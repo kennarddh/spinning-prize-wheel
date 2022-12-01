@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 
-import { Container, Wheel, TextContainer, Text } from './AppStyles'
+import { Container, Wheel, TextContainer, Text, Triangle } from './AppStyles'
 
 const GenerateRandomColor = () => `hsla(${Math.random() * 360}, 100%, 50%, 1)`
 
@@ -70,7 +70,8 @@ const App: FC = () => {
 
 		const selectedIndex = RandBetween(0, PartData.length - 1)
 
-		const selectedRotation = (360 / PartData.length) * selectedIndex + 45
+		const selectedRotation =
+			(360 / PartData.length) * selectedIndex + 360 / PartData.length / 2
 
 		const missRotation = RandBetween(0, (360 / PartData.length) * 0.35)
 		const missDir = Math.random() > 0.5 ? -1 : 1
@@ -96,8 +97,7 @@ const App: FC = () => {
 
 	return (
 		<Container>
-			<button onClick={OnRotate}>Rotate</button>
-			<button onClick={PlayAgain}>Play Again</button>
+			<Triangle></Triangle>
 			<Wheel
 				colors={PartData.map(val => val.color)}
 				duration={RotateDuration}
@@ -116,6 +116,10 @@ const App: FC = () => {
 					</TextContainer>
 				))}
 			</Wheel>
+			<div>
+				<button onClick={OnRotate}>Rotate</button>
+				<button onClick={PlayAgain}>Play Again</button>
+			</div>
 		</Container>
 	)
 }

@@ -7,6 +7,20 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+`
+
+export const Triangle = styled.div`
+	width: 50px;
+	height: 50px;
+
+	border: 10px solid black;
+	border-top: none;
+	border-left: none;
+
+	rotate: 45deg;
+
+	translate: 0 -50%;
 `
 
 export const Wheel = styled.div<{

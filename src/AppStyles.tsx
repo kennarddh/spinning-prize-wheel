@@ -52,7 +52,8 @@ export const Wheel = styled.div<{
 	justify-content: center;
 	align-items: center;
 
-	transition: rotate ${({ duration }) => duration}s ease-out;
+	transition: rotate cubic-bezier(0, -0.14, 0, 1)
+		${({ duration }) => duration}s;
 
 	rotate: ${({ rotation }) => rotation}deg;
 `

@@ -87,7 +87,19 @@ export interface IProps {
 	 *
 	 * @param {string} id - Choosed id
 	 */
-	onEndRotate: ((id: string) => void) | undefined
+	onEndRotate?: ((id: string) => void) | undefined
+
+	/**
+	 * Callback that called when rotation started
+	 *
+	 * @param {string} id - Choosed id
+	 */
+	onStartRotate?: ((id: string) => void) | undefined
+
+	/**
+	 * Callback that called when rotation reset
+	 */
+	onReset?: (() => void) | undefined
 
 	/**
 	 * Same color for every choice in same rarity group

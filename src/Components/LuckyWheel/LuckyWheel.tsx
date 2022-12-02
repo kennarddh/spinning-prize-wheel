@@ -23,6 +23,8 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		rarityGroups,
 		choices,
 		onEndRotate,
+		onStartRotate,
+		onReset,
 		withoutArrow,
 		fullRotationAddBeforeDestination,
 		counterClockwise,
@@ -96,6 +98,8 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			rotationDirection *
 			(selectedRotation + rotationAdd + missRotation * missDir)
 
+		if (onStartRotate) onStartRotate(Choices[selectedIndex].id)
+
 		SetRotation(targetRotation)
 
 		setTimeout(() => {
@@ -104,13 +108,14 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			if (onEndRotate) onEndRotate(Choices[selectedIndex].id)
 		}, rotateDuration * 1000)
 	}, [
-		GetRotationAdd,
 		IsRotated,
+		GetRotationAdd,
+		rarityGroups,
 		Choices,
 		counterClockwise,
-		onEndRotate,
-		rarityGroups,
+		onStartRotate,
 		rotateDuration,
+		onEndRotate,
 	])
 
 	const Reset = useCallback(() => {
@@ -120,11 +125,13 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		SetRotateDuration(resetRotateDuration)
 		SetRotation(0)
 
+		if (onReset) onReset()
+
 		// Wait next tick
 		setTimeout(() => {
 			SetRotateDuration(rotateDuration)
 		}, 0)
-	}, [IsRotated, resetRotateDuration, rotateDuration])
+	}, [IsRotated, onReset, resetRotateDuration, rotateDuration])
 
 	useImperativeHandle(
 		ref,

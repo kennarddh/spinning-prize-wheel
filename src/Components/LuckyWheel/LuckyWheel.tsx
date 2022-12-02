@@ -23,22 +23,22 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 
 	const [IsRotated, SetIsRotated] = useState(false)
 
+	const GetRotationAdd = useCallback(() => {
+		if (fullRotationAddBeforeDestination) {
+			if (typeof fullRotationAddBeforeDestination === 'function') {
+				return fullRotationAddBeforeDestination()
+			} else {
+				return fullRotationAddBeforeDestination
+			}
+		} else {
+			return RandomBetween(2, 5)
+		}
+	}, [fullRotationAddBeforeDestination])
+
 	const Rotate = useCallback(() => {
 		if (IsRotated) return
 
-		let rotationAddCount
-
-		if (fullRotationAddBeforeDestination) {
-			if (typeof fullRotationAddBeforeDestination === 'function') {
-				rotationAddCount = fullRotationAddBeforeDestination()
-			} else {
-				rotationAddCount = fullRotationAddBeforeDestination
-			}
-		} else {
-			rotationAddCount = RandomBetween(2, 5)
-		}
-
-		const rotationAdd = 360 * rotationAddCount
+		const rotationAdd = 360 * GetRotationAdd()
 
 		const selectedRarityGroup = WeightedRandom(
 			Object.entries(rarityGroups).reduce<Record<string, number>>(
@@ -81,9 +81,9 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			if (onEndRotate) onEndRotate(choice[selectedIndex].id)
 		}, rotateDuration * 1000)
 	}, [
+		GetRotationAdd,
 		IsRotated,
 		choice,
-		fullRotationAddBeforeDestination,
 		onEndRotate,
 		rarityGroups,
 		rotateDuration,

@@ -28,9 +28,9 @@ export interface IProps {
 	rarityGroups: IRarityGroups
 
 	/**
-	 * Avaliavle choices
+	 * Available choices
 	 */
-	choice: IChoice
+	choice: IChoices
 
 	/**
 	 * Remove default arrow

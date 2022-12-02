@@ -4,7 +4,7 @@ import RandomColor from 'Utils/RandomColor'
 
 import LuckyWheel, {
 	IRarityGroups,
-	IChoice,
+	IChoices,
 	ILuckyWheel,
 } from 'Components/LuckyWheel/LuckyWheel'
 
@@ -26,7 +26,7 @@ const App: FC = () => {
 		},
 	})
 
-	const [Choice] = useState<IChoice>([
+	const [Choice] = useState<IChoices>([
 		{
 			id: 'e22d86e0-6d5e-4af0-a5e2-cd70ad9122cf',
 			label: '1',

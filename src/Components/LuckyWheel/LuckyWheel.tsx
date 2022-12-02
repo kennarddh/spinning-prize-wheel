@@ -9,7 +9,7 @@ import WeightedRandom from 'Utils/WeightedRandom'
 import { IRarityGroups, IChoice, IProps, ILuckyWheel } from './Types'
 
 const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
-	{ rotateDuration, rarityGroups, choice, onEndRotate },
+	{ rotateDuration, rarityGroups, choice, onEndRotate, withoutArrow },
 	ref
 ) => {
 	const [Rotation, SetRotation] = useState(0)
@@ -81,7 +81,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 
 	return (
 		<Container>
-			<Triangle></Triangle>
+			{!withoutArrow ? <Triangle></Triangle> : null}
 			<Wheel
 				colors={choice.map(val => val.color)}
 				duration={rotateDuration}

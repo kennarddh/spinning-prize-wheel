@@ -24,15 +24,16 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 	const [IsRotated, SetIsRotated] = useState(false)
 
 	const GetRotationAdd = useCallback(() => {
-		if (fullRotationAddBeforeDestination) {
-			if (typeof fullRotationAddBeforeDestination === 'function') {
-				return fullRotationAddBeforeDestination()
-			} else {
-				return fullRotationAddBeforeDestination
-			}
-		} else {
-			return RandomBetween(2, 5)
+		if (!fullRotationAddBeforeDestination) return RandomBetween(2, 5)
+
+		if (
+			fullRotationAddBeforeDestination &&
+			typeof fullRotationAddBeforeDestination === 'function'
+		) {
+			return fullRotationAddBeforeDestination()
 		}
+
+		return fullRotationAddBeforeDestination
 	}, [fullRotationAddBeforeDestination])
 
 	const Rotate = useCallback(() => {

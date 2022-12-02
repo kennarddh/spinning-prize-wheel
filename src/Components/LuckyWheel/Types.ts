@@ -16,4 +16,5 @@ export interface IProps {
 	rotateDuration: number
 	rarityGroups: IRarityGroups
 	choice: IChoice
+	onEndRotate: ((id: string) => void) | undefined
 }

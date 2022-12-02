@@ -8,7 +8,12 @@ import WeightedRandom from 'Utils/WeightedRandom'
 
 import { IRarityGroups, IChoice, IProps } from './Types'
 
-const LuckyWheel: FC<IProps> = ({ rotateDuration, rarityGroups, choice }) => {
+const LuckyWheel: FC<IProps> = ({
+	rotateDuration,
+	rarityGroups,
+	choice,
+	onEndRotate,
+}) => {
 	const [Rotation, SetRotation] = useState(0)
 
 	const [IsRotated, SetIsRotated] = useState(false)
@@ -55,12 +60,8 @@ const LuckyWheel: FC<IProps> = ({ rotateDuration, rarityGroups, choice }) => {
 
 		setTimeout(() => {
 			SetIsRotated(true)
-			// eslint-disable-next-line security/detect-object-injection
-			alert(
-				`You get ${choice[selectedIndex].label} ${
-					rarityGroups[selectedRarityGroup ?? ''].label
-				}`
-			)
+
+			if (onEndRotate) onEndRotate(choice[selectedIndex].id)
 		}, rotateDuration * 1000)
 	}
 

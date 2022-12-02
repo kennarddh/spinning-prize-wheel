@@ -81,6 +81,15 @@ const App: FC = () => {
 			rarityGroup: 'rare',
 		},
 	])
+	const OnEndRotate = (id: string) => {
+		const choice = Choice.find(item => item.id === id)
+
+		alert(
+			`You get ${choice?.label} ${
+				RarityGroups[choice?.rarityGroup ?? ''].label
+			}`
+		)
+	}
 
 	return (
 		<Container>
@@ -88,6 +97,7 @@ const App: FC = () => {
 				rotateDuration={1}
 				rarityGroups={RarityGroups}
 				choice={Choice}
+				onEndRotate={OnEndRotate}
 			/>
 		</Container>
 	)

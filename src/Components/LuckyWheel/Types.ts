@@ -5,7 +5,7 @@ export interface IRarityGroups {
 	}
 }
 
-export type IPartData = {
+export type IChoice = {
 	id: string
 	label: string
 	color: string
@@ -14,4 +14,6 @@ export type IPartData = {
 
 export interface IProps {
 	rotateDuration: number
+	rarityGroups: IRarityGroups
+	choice: IChoice
 }

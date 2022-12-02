@@ -28,7 +28,7 @@ const App: FC = () => {
 		},
 	})
 
-	const [Choice] = useState<IChoices>([
+	const [Choices] = useState<IChoices>([
 		{
 			id: 'e22d86e0-6d5e-4af0-a5e2-cd70ad9122cf',
 			label: '1',
@@ -85,7 +85,7 @@ const App: FC = () => {
 		},
 	])
 	const OnEndRotate = (id: string) => {
-		const choice = Choice.find(item => item.id === id)
+		const choice = Choices.find(item => item.id === id)
 
 		alert(
 			`You get ${choice?.label} ${
@@ -109,7 +109,7 @@ const App: FC = () => {
 			<LuckyWheel
 				rotateDuration={1}
 				rarityGroups={RarityGroups}
-				choice={Choice}
+				choices={Choices}
 				onEndRotate={OnEndRotate}
 				ref={LuckyWheelRef}
 				groupColorByRarity

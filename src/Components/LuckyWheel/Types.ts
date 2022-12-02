@@ -62,7 +62,7 @@ export interface IProps {
 	/**
 	 * Available choices
 	 */
-	choice: IChoices
+	choices: IChoices
 
 	/**
 	 * Remove default arrow

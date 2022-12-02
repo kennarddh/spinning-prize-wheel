@@ -20,7 +20,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 	{
 		rotateDuration,
 		rarityGroups,
-		choice,
+		choices,
 		onEndRotate,
 		withoutArrow,
 		fullRotationAddBeforeDestination,
@@ -64,7 +64,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			)
 		)
 
-		const availableChoice = choice.filter(
+		const availableChoice = choices.filter(
 			item => item.rarityGroup === selectedRarityGroup
 		)
 
@@ -73,7 +73,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			availableChoice.length - 1
 		)
 
-		const selectedIndex = choice.findIndex(
+		const selectedIndex = choices.findIndex(
 			item => item.id === availableChoice[selectedAvailableIndex].id
 		)
 
@@ -82,9 +82,9 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		const selectedRotation =
 			rotationDirection *
 			-1 *
-			((360 / choice.length) * selectedIndex + 360 / choice.length / 2)
+			((360 / choices.length) * selectedIndex + 360 / choices.length / 2)
 
-		const missRotation = RandomBetween(0, (360 / choice.length) * 0.35)
+		const missRotation = RandomBetween(0, (360 / choices.length) * 0.35)
 		const missDir = Math.random() > 0.5 ? -1 : 1
 
 		const targetRotation =
@@ -96,12 +96,12 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		setTimeout(() => {
 			SetIsRotated(true)
 
-			if (onEndRotate) onEndRotate(choice[selectedIndex].id)
+			if (onEndRotate) onEndRotate(choices[selectedIndex].id)
 		}, rotateDuration * 1000)
 	}, [
 		GetRotationAdd,
 		IsRotated,
-		choice,
+		choices,
 		counterClockwise,
 		onEndRotate,
 		rarityGroups,
@@ -131,10 +131,10 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 	)
 
 	useEffect(() => {
-		if (new Set(choice.map(val => val.id)).size !== choice.length) {
+		if (new Set(choices.map(val => val.id)).size !== choices.length) {
 			throw new Error('Choices id cannot be duplicate')
 		}
-	}, [choice])
+	}, [choices])
 
 	const groupColor = useMemo(() => {
 		return Object.entries(rarityGroups).reduce<Record<string, string>>(
@@ -151,7 +151,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		<Container>
 			{!withoutArrow ? <Triangle></Triangle> : null}
 			<Wheel
-				colors={choice.map(val => {
+				colors={choices.map(val => {
 					if (groupColorByRarity) return groupColor[val.rarityGroup]
 
 					return val.color ? val.color : RandomColor()
@@ -159,11 +159,12 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 				duration={RotateDuration}
 				rotation={Rotation}
 			>
-				{choice.map(({ label, id }, i) => (
+				{choices.map(({ label, id }, i) => (
 					<TextContainer key={id}>
 						<Text
 							rotation={
-								i * (360 / choice.length) + 180 / choice.length
+								i * (360 / choices.length) +
+								180 / choices.length
 							}
 						>
 							{label}

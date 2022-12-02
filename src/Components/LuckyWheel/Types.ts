@@ -99,6 +99,11 @@ export interface IProps {
 	 * Random color will be used if color not specified
 	 */
 	groupColorByRarity?: boolean
+
+	/**
+	 * Shuffle choices
+	 */
+	shuffleChoices?: boolean
 }
 
 export interface ILuckyWheel {

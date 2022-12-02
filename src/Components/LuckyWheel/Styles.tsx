@@ -24,6 +24,7 @@ export const Wheel = styled.div<{
 	rotation: number
 	duration: number
 	colors: string[]
+	size: number
 }>`
 	background: conic-gradient(
 		${({ colors }) =>
@@ -38,8 +39,8 @@ export const Wheel = styled.div<{
 				.join(',')}
 	);
 
-	width: 200px;
-	height: 200px;
+	width: ${({ size }) => size}px;
+	height: ${({ size }) => size}px;
 
 	border-radius: 50%;
 
@@ -56,8 +57,8 @@ export const Wheel = styled.div<{
 `
 
 export const TextContainer = styled.div`
-	width: 150px;
-	height: 150px;
+	width: 75%;
+	height: 75%;
 
 	position: absolute;
 
@@ -65,8 +66,10 @@ export const TextContainer = styled.div`
 	justify-content: center;
 `
 
-export const Text = styled.p<{ rotation: number }>`
+export const Text = styled.p<{ rotation: number; fontSize: number }>`
 	rotate: ${({ rotation }) => rotation}deg;
+
+	font-size: ${({ fontSize }) => fontSize}px;
 
 	width: fit-content;
 `

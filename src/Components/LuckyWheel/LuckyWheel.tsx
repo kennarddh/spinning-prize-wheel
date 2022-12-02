@@ -29,6 +29,8 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		groupColorByRarity,
 		resetRotateDuration = 0,
 		shuffleChoices,
+		size,
+		fontSize = 16,
 	},
 	ref
 ) => {
@@ -163,6 +165,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 				})}
 				duration={RotateDuration}
 				rotation={Rotation}
+				size={size}
 			>
 				{Choices.map(({ label, id }, i) => (
 					<TextContainer key={id}>
@@ -171,6 +174,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 								i * (360 / Choices.length) +
 								180 / Choices.length
 							}
+							fontSize={fontSize}
 						>
 							{label}
 						</Text>

@@ -113,6 +113,8 @@ const App: FC = () => {
 				onEndRotate={OnEndRotate}
 				ref={LuckyWheelRef}
 				groupColorByRarity
+				size={400}
+				fontSize={25}
 			/>
 			<div>
 				<button onClick={Rotate}>Rotate</button>

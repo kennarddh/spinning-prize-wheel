@@ -104,6 +104,18 @@ export interface IProps {
 	 * Shuffle choices
 	 */
 	shuffleChoices?: boolean
+
+	/**
+	 * Wheel size
+	 */
+	size: number
+
+	/**
+	 * Font size
+	 *
+	 * Default 16px
+	 */
+	fontSize?: number
 }
 
 export interface ILuckyWheel {

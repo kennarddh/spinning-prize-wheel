@@ -2,15 +2,40 @@ import { FactoryOrValue } from 'Types'
 
 export interface IRarityGroups {
 	[key: string]: {
+		/**
+		 * Human readable label
+		 */
 		label: string
+
+		/**
+		 * Percentage
+		 * All rarity group sums must add up to 100
+		 */
 		rarity: number
+
+		/**
+		 * Random color will be used if color not specified
+		 */
+		color?: string
 	}
 }
 
 export type IChoice = {
 	id: string
+
+	/**
+	 * Human readable label
+	 */
 	label: string
-	color: string
+
+	/**
+	 * Random color will be used if color not specified
+	 */
+	color?: string
+
+	/**
+	 * One of rarity group
+	 */
 	rarityGroup: string
 }
 
@@ -56,6 +81,17 @@ export interface IProps {
 	 * @param {string} id - Choosed id
 	 */
 	onEndRotate: ((id: string) => void) | undefined
+
+	/**
+	 * Same color for every choice in same rarity group
+	 *
+	 * Choice color will be omitted
+	 *
+	 * Rarity groups color will be used
+	 *
+	 * Random color will be used if color not specified
+	 */
+	groupColorByRarity?: boolean
 }
 
 export interface ILuckyWheel {

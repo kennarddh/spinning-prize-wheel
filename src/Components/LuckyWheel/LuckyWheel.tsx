@@ -1,5 +1,11 @@
 /* eslint-disable security/detect-object-injection */
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
+import {
+	forwardRef,
+	useCallback,
+	useImperativeHandle,
+	useMemo,
+	useState,
+} from 'react'
 
 import { Container, Wheel, TextContainer, Text, Triangle } from './Styles'
 
@@ -18,6 +24,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		withoutArrow,
 		fullRotationAddBeforeDestination,
 		counterClockwise,
+		groupColorByRarity,
 	},
 	ref
 ) => {
@@ -114,11 +121,26 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		[Reset, Rotate]
 	)
 
+	const groupColor = useMemo(() => {
+		return Object.entries(rarityGroups).reduce<Record<string, string>>(
+			(acc, [key, { color }]) => {
+				acc[key] = color ? color : RandomColor()
+
+				return acc
+			},
+			{}
+		)
+	}, [rarityGroups])
+
 	return (
 		<Container>
 			{!withoutArrow ? <Triangle></Triangle> : null}
 			<Wheel
-				colors={choice.map(val => val.color)}
+				colors={choice.map(val => {
+					if (groupColorByRarity) return groupColor[val.rarityGroup]
+
+					return val.color ? val.color : RandomColor()
+				})}
 				duration={rotateDuration}
 				rotation={Rotation}
 			>

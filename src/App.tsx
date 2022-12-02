@@ -14,14 +14,17 @@ const App: FC = () => {
 		common: {
 			label: 'Common',
 			rarity: 50,
+			color: RandomColor(),
 		},
 		uncommon: {
 			label: 'Uncommon',
 			rarity: 40,
+			color: RandomColor(),
 		},
 		rare: {
 			label: 'Rare',
 			rarity: 10,
+			color: RandomColor(),
 		},
 	})
 
@@ -109,6 +112,7 @@ const App: FC = () => {
 				choice={Choice}
 				onEndRotate={OnEndRotate}
 				ref={LuckyWheelRef}
+				groupColorByRarity
 			/>
 			<div>
 				<button onClick={Rotate}>Rotate</button>

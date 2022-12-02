@@ -20,6 +20,7 @@ export interface IProps {
 	choice: IChoice
 	withoutArrow?: boolean
 	fullRotationAddBeforeDestination?: FactoryOrValue<number> // Default 2 - 5 random
+	counterClockwise?: boolean
 	onEndRotate: ((id: string) => void) | undefined
 }
 

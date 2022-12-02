@@ -16,6 +16,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		onEndRotate,
 		withoutArrow,
 		fullRotationAddBeforeDestination,
+		counterClockwise,
 	},
 	ref
 ) => {
@@ -65,14 +66,19 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			item => item.id === availableChoice[selectedAvailableIndex].id
 		)
 
+		const rotationDirection = counterClockwise ? -1 : 1
+
 		const selectedRotation =
-			(360 / choice.length) * selectedIndex + 360 / choice.length / 2
+			rotationDirection *
+			-1 *
+			((360 / choice.length) * selectedIndex + 360 / choice.length / 2)
 
 		const missRotation = RandomBetween(0, (360 / choice.length) * 0.35)
 		const missDir = Math.random() > 0.5 ? -1 : 1
 
 		const targetRotation =
-			-1 * (selectedRotation + rotationAdd + missRotation * missDir)
+			rotationDirection *
+			(selectedRotation + rotationAdd + missRotation * missDir)
 
 		SetRotation(targetRotation)
 
@@ -85,6 +91,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		GetRotationAdd,
 		IsRotated,
 		choice,
+		counterClockwise,
 		onEndRotate,
 		rarityGroups,
 		rotateDuration,

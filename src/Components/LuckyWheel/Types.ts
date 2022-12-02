@@ -11,3 +11,7 @@ export type IPartData = {
 	color: string
 	rarityGroup: string
 }[]
+
+export interface IProps {
+	rotateDuration: number
+}

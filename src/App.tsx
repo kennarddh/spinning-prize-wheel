@@ -7,7 +7,7 @@ import { Container } from './AppStyles'
 const App: FC = () => {
 	return (
 		<Container>
-			<LuckyWheel />
+			<LuckyWheel rotateDuration={1} />
 		</Container>
 	)
 }

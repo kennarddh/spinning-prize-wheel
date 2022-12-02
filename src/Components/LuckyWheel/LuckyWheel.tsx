@@ -5,13 +5,12 @@ import { Container, Wheel, TextContainer, Text, Triangle } from './Styles'
 
 import RandomColor from 'Utils/RandomColor'
 import RandomBetween from 'Utils/RandomBetween'
-
-import { IRarityGroups, IPartData } from './Types'
 import WeightedRandom from 'Utils/WeightedRandom'
 
-const LuckyWheel: FC = () => {
+import { IRarityGroups, IPartData, IProps } from './Types'
+
+const LuckyWheel: FC<IProps> = ({ rotateDuration }) => {
 	const [Rotation, SetRotation] = useState(0)
-	const [RotateDuration] = useState(1)
 
 	const [RarityGroups] = useState<IRarityGroups>({
 		common: {
@@ -135,7 +134,7 @@ const LuckyWheel: FC = () => {
 					RarityGroups[selectedRarityGroup ?? ''].label
 				}`
 			)
-		}, RotateDuration * 1000)
+		}, rotateDuration * 1000)
 	}
 
 	const PlayAgain = () => {
@@ -150,7 +149,7 @@ const LuckyWheel: FC = () => {
 			<Triangle></Triangle>
 			<Wheel
 				colors={PartData.map(val => val.color)}
-				duration={RotateDuration}
+				duration={rotateDuration}
 				rotation={Rotation}
 			>
 				{PartData.map(({ label, id }, i) => (

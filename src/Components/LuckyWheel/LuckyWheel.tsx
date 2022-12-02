@@ -5,6 +5,7 @@ import { Container, Wheel, TextContainer, Text, Triangle } from './Styles'
 
 import RandomBetween from 'Utils/RandomBetween'
 import WeightedRandom from 'Utils/WeightedRandom'
+import RandomColor from 'Utils/RandomColor'
 
 import { IRarityGroups, IChoice, IProps, ILuckyWheel, IChoices } from './Types'
 
@@ -140,3 +141,5 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 export default forwardRef(LuckyWheel)
 
 export type { IRarityGroups, IChoice, ILuckyWheel, IChoices }
+
+export { RandomColor, WeightedRandom, RandomBetween }

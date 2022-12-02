@@ -1,11 +1,10 @@
 import { FC, useRef, useState } from 'react'
 
-import RandomColor from 'Utils/RandomColor'
-
 import LuckyWheel, {
 	IRarityGroups,
 	IChoices,
 	ILuckyWheel,
+	RandomColor,
 } from 'Components/LuckyWheel/LuckyWheel'
 
 import { Container } from './AppStyles'

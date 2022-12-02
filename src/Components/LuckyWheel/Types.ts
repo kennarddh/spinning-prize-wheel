@@ -18,3 +18,8 @@ export interface IProps {
 	choice: IChoice
 	onEndRotate: ((id: string) => void) | undefined
 }
+
+export interface ILuckyWheel {
+	Rotate: () => void
+	Reset: () => void
+}

@@ -1,24 +1,22 @@
 /* eslint-disable security/detect-object-injection */
-import { FC, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
 
 import { Container, Wheel, TextContainer, Text, Triangle } from './Styles'
 
 import RandomBetween from 'Utils/RandomBetween'
 import WeightedRandom from 'Utils/WeightedRandom'
 
-import { IRarityGroups, IChoice, IProps } from './Types'
+import { IRarityGroups, IChoice, IProps, ILuckyWheel } from './Types'
 
-const LuckyWheel: FC<IProps> = ({
-	rotateDuration,
-	rarityGroups,
-	choice,
-	onEndRotate,
-}) => {
+const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
+	{ rotateDuration, rarityGroups, choice, onEndRotate },
+	ref
+) => {
 	const [Rotation, SetRotation] = useState(0)
 
 	const [IsRotated, SetIsRotated] = useState(false)
 
-	const OnRotate = () => {
+	const Rotate = useCallback(() => {
 		if (IsRotated) return
 
 		const rotationAdd = 360 * RandomBetween(2, 5)
@@ -63,14 +61,23 @@ const LuckyWheel: FC<IProps> = ({
 
 			if (onEndRotate) onEndRotate(choice[selectedIndex].id)
 		}, rotateDuration * 1000)
-	}
+	}, [IsRotated, choice, onEndRotate, rarityGroups, rotateDuration])
 
-	const PlayAgain = () => {
+	const Reset = useCallback(() => {
 		if (!IsRotated) return
 
 		SetIsRotated(false)
 		SetRotation(0)
-	}
+	}, [IsRotated])
+
+	useImperativeHandle(
+		ref,
+		() => ({
+			Reset,
+			Rotate,
+		}),
+		[Reset, Rotate]
+	)
 
 	return (
 		<Container>
@@ -92,14 +99,10 @@ const LuckyWheel: FC<IProps> = ({
 					</TextContainer>
 				))}
 			</Wheel>
-			<div>
-				<button onClick={OnRotate}>Rotate</button>
-				<button onClick={PlayAgain}>Play Again</button>
-			</div>
 		</Container>
 	)
 }
 
-export default LuckyWheel
+export default forwardRef(LuckyWheel)
 
-export type { IRarityGroups, IChoice }
+export type { IRarityGroups, IChoice, ILuckyWheel }

@@ -1,10 +1,11 @@
-import { FC, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 
 import RandomColor from 'Utils/RandomColor'
 
 import LuckyWheel, {
 	IRarityGroups,
 	IChoice,
+	ILuckyWheel,
 } from 'Components/LuckyWheel/LuckyWheel'
 
 import { Container } from './AppStyles'
@@ -91,6 +92,16 @@ const App: FC = () => {
 		)
 	}
 
+	const LuckyWheelRef = useRef<ILuckyWheel>(null)
+
+	const Rotate = () => {
+		LuckyWheelRef.current?.Rotate()
+	}
+
+	const Reset = () => {
+		LuckyWheelRef.current?.Reset()
+	}
+
 	return (
 		<Container>
 			<LuckyWheel
@@ -98,7 +109,12 @@ const App: FC = () => {
 				rarityGroups={RarityGroups}
 				choice={Choice}
 				onEndRotate={OnEndRotate}
+				ref={LuckyWheelRef}
 			/>
+			<div>
+				<button onClick={Rotate}>Rotate</button>
+				<button onClick={Reset}>Reset</button>
+			</div>
 		</Container>
 	)
 }

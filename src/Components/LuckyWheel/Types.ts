@@ -48,6 +48,13 @@ export interface IProps {
 	rotateDuration: number
 
 	/**
+	 * Reset rotate duration
+	 *
+	 * @default 0
+	 */
+	resetRotateDuration?: number
+
+	/**
 	 * One of rarity key in rarity groups
 	 */
 	rarityGroups: IRarityGroups

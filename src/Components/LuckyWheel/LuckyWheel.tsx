@@ -25,10 +25,12 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		fullRotationAddBeforeDestination,
 		counterClockwise,
 		groupColorByRarity,
+		resetRotateDuration = 0,
 	},
 	ref
 ) => {
 	const [Rotation, SetRotation] = useState(0)
+	const [RotateDuration, SetRotateDuration] = useState(rotateDuration)
 
 	const [IsRotated, SetIsRotated] = useState(false)
 
@@ -109,8 +111,14 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		if (!IsRotated) return
 
 		SetIsRotated(false)
+		SetRotateDuration(resetRotateDuration)
 		SetRotation(0)
-	}, [IsRotated])
+
+		// Wait next tick
+		setTimeout(() => {
+			SetRotateDuration(rotateDuration)
+		}, 0)
+	}, [IsRotated, resetRotateDuration, rotateDuration])
 
 	useImperativeHandle(
 		ref,
@@ -141,7 +149,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 
 					return val.color ? val.color : RandomColor()
 				})}
-				duration={rotateDuration}
+				duration={RotateDuration}
 				rotation={Rotation}
 			>
 				{choice.map(({ label, id }, i) => (

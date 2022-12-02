@@ -1,3 +1,5 @@
+import { FactoryOrValue } from 'Types'
+
 export interface IRarityGroups {
 	[key: string]: {
 		label: string
@@ -17,6 +19,7 @@ export interface IProps {
 	rarityGroups: IRarityGroups
 	choice: IChoice
 	withoutArrow?: boolean
+	fullRotationAddBeforeDestination?: FactoryOrValue<number> // Default 2 - 5 random
 	onEndRotate: ((id: string) => void) | undefined
 }
 

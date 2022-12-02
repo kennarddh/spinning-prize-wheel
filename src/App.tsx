@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection */
 import { FC, useState } from 'react'
 
 import { Container, Wheel, TextContainer, Text, Triangle } from './AppStyles'
@@ -6,6 +7,7 @@ import RandomColor from 'Utils/RandomColor'
 import RandomBetween from 'Utils/RandomBetween'
 
 import { IRarityGroups, IPartData } from './Types'
+import WeightedRandom from 'Utils/WeightedRandom'
 
 const App: FC = () => {
 	const [Rotation, SetRotation] = useState(0)
@@ -90,7 +92,29 @@ const App: FC = () => {
 
 		const rotationAdd = 360 * RandomBetween(2, 5)
 
-		const selectedIndex = RandomBetween(0, PartData.length - 1)
+		const selectedRarityGroup = WeightedRandom(
+			Object.entries(RarityGroups).reduce<Record<string, number>>(
+				(acc, [key, value]) => {
+					acc[key] = value.rarity
+
+					return acc
+				},
+				{}
+			)
+		)
+
+		const availableChoice = PartData.filter(
+			item => item.rarityGroup === selectedRarityGroup
+		)
+
+		const selectedAvailableIndex = RandomBetween(
+			0,
+			availableChoice.length - 1
+		)
+
+		const selectedIndex = PartData.findIndex(
+			item => item.id === availableChoice[selectedAvailableIndex].id
+		)
 
 		const selectedRotation =
 			(360 / PartData.length) * selectedIndex + 360 / PartData.length / 2
@@ -106,7 +130,11 @@ const App: FC = () => {
 		setTimeout(() => {
 			SetIsRotated(true)
 			// eslint-disable-next-line security/detect-object-injection
-			alert(`You get ${PartData[selectedIndex].label}`)
+			alert(
+				`You get ${PartData[selectedIndex].label} ${
+					RarityGroups[selectedRarityGroup ?? ''].label
+				}`
+			)
 		}, RotateDuration * 1000)
 	}
 

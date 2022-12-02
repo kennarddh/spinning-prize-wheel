@@ -2,6 +2,7 @@
 import {
 	forwardRef,
 	useCallback,
+	useEffect,
 	useImperativeHandle,
 	useMemo,
 	useState,
@@ -128,6 +129,12 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		}),
 		[Reset, Rotate]
 	)
+
+	useEffect(() => {
+		if (new Set(choice.map(val => val.id)).size !== choice.length) {
+			throw new Error('Choices id cannot be duplicate')
+		}
+	}, [choice])
 
 	const groupColor = useMemo(() => {
 		return Object.entries(rarityGroups).reduce<Record<string, string>>(

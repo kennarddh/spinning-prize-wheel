@@ -158,6 +158,19 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		SetChoices(shuffleChoices ? Shuffle(choices) : choices)
 	}, [choices, shuffleChoices])
 
+	useEffect(() => {
+		let sum = 0
+
+		for (const data of Object.values(rarityGroups)) {
+			if (data.rarity < 0)
+				throw new Error('Rarity must not be smaller than 0')
+
+			sum += data.rarity
+		}
+
+		if (sum !== 100) throw new Error('Sum of rarities must be equal to 100')
+	}, [rarityGroups])
+
 	const groupColor = useMemo(() => {
 		return Object.entries(rarityGroups).reduce<Record<string, string>>(
 			(acc, [key, { color }]) => {

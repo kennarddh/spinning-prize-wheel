@@ -128,6 +128,11 @@ export interface IProps {
 	 * Default 16px
 	 */
 	fontSize?: number
+
+	/**
+	 * Need reset before rotate
+	 */
+	needReset?: boolean
 }
 
 export interface ILuckyWheel {

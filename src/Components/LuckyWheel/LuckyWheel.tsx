@@ -33,6 +33,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		shuffleChoices,
 		size,
 		fontSize = 16,
+		needReset,
 	},
 	ref
 ) => {
@@ -102,11 +103,17 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 
 		SetRotation(targetRotation)
 
-		setTimeout(() => {
-			SetIsRotated(true)
+		if (rotateDuration !== 0)
+			setTimeout(() => {
+				SetIsRotated(true)
+
+				if (onEndRotate) onEndRotate(Choices[selectedIndex].id)
+			}, rotateDuration * 1000)
+		else {
+			if (needReset) SetIsRotated(true)
 
 			if (onEndRotate) onEndRotate(Choices[selectedIndex].id)
-		}, rotateDuration * 1000)
+		}
 	}, [
 		IsRotated,
 		GetRotationAdd,
@@ -116,6 +123,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 		onStartRotate,
 		rotateDuration,
 		onEndRotate,
+		needReset,
 	])
 
 	const Reset = useCallback(() => {

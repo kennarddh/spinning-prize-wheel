@@ -7,10 +7,10 @@
 		"start": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"lint:check": "eslint src/**/*.{ts,tsx,json}",
-		"lint:fix": "eslint --fix src/**/*.{ts,tsx,json}",
-		"prettier:fix": "prettier -w \"src/**/*.{ts,tsx,json,md}\" \"*.md\"",
-		"prettier:check": "prettier -c \"src/**/*.{ts,tsx,json,md}\" \"*.md\"",
+		"lint:check": "eslint {src,sites}/**/*.{ts,tsx,json}",
+		"lint:fix": "eslint --fix {src,sites}/**/*.{ts,tsx,json}",
+		"prettier:fix": "prettier -w \"{src,sites}/**/*.{ts,tsx,json,md}\" \"*.md\"",
+		"prettier:check": "prettier -c \"{src,sites}/**/*.{ts,tsx,json,md}\" \"*.md\"",
 		"clean": "rimraf build",
 		"test": "jest --passWithNoTests",
 		"test:watch": "jest --watch --passWithNoTests",
@@ -79,7 +79,7 @@
 		"vite-plugin-eslint": "^1.8.1",
 		"vite-plugin-svgr": "^2.2.1"
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"styled-components": "^5.3.5"

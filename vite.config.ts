@@ -27,30 +27,29 @@ export const resolveAlias = Object.entries(relativeAlias).reduce(
 )
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-	const envPrefix: string[] = ['APP_']
-
-	const { PORT = 3000, OPEN_BROWSER = 'true' } = {
-		...loadEnv(mode, process.cwd(), ''),
-	}
-
-	const appEnv = loadEnv(mode, process.cwd(), envPrefix)
-
+export default defineConfig(() => {
 	return {
 		plugins: [react(), eslintPlugin(), svgr()],
 		resolve: {
 			alias: resolveAlias,
 		},
-		server: {
-			port: PORT || 3000,
-			open: OPEN_BROWSER === 'true' ? true : false,
-		},
-		envPrefix,
 		build: {
-			outDir: 'build',
-		},
-		define: {
-			env: { ...appEnv },
+			lib: {
+				entry: resolve(__dirname, 'src/index.ts'),
+				name: 'spinningPrizeWheel',
+				formats: ['es', 'umd'],
+				fileName: format => `spinning-prize-wheel.${format}.js`,
+			},
+			rollupOptions: {
+				external: ['react', 'react-dom', 'styled-components'],
+				output: {
+					globals: {
+						react: 'React',
+						'react-dom': 'ReactDOM',
+						'styled-components': 'styled',
+					},
+				},
+			},
 		},
 	}
 })

@@ -3,6 +3,7 @@
 		"composite": true,
 		"module": "ESNext",
 		"moduleResolution": "Node",
+		"jsx": "react-jsx",
 		"allowSyntheticDefaultImports": true
 	},
 	"include": [
@@ -10,6 +11,7 @@
 		"babel.config.js",
 		".eslintrc.js",
 		"jest.config.ts",
-		"jest.setup.ts"
+		"jest.setup.ts",
+		"sites"
 	]
 }

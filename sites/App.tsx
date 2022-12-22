@@ -4,7 +4,8 @@ import LuckyWheel, {
 	IRarityGroups,
 	IChoices,
 	ILuckyWheel,
-} from 'Components/LuckyWheel/LuckyWheel'
+// @ts-ignore
+} from '../src/Components/LuckyWheel/LuckyWheel'
 
 import { Container } from './AppStyles'
 

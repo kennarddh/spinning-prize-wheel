@@ -15,7 +15,13 @@ import WeightedRandom from 'Utils/WeightedRandom'
 import RandomColor from 'Utils/RandomColor'
 import { Shuffle } from 'Utils/Array'
 
-import { IRarityGroups, IChoice, IProps, ILuckyWheel, IChoices } from './Types'
+import type {
+	IRarityGroups,
+	IChoice,
+	IProps,
+	ILuckyWheel,
+	IChoices,
+} from './Types'
 
 const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 	{
@@ -53,7 +59,7 @@ const LuckyWheel: React.ForwardRefRenderFunction<ILuckyWheel, IProps> = (
 			return fullRotationAddBeforeDestination()
 		}
 
-		return fullRotationAddBeforeDestination
+		return fullRotationAddBeforeDestination as number
 	}, [fullRotationAddBeforeDestination])
 
 	const Rotate = useCallback(() => {

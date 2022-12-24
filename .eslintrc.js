@@ -14,11 +14,10 @@ module.exports = {
 				'.eslintrc.js',
 				'jest.config.ts',
 				'jest.setup.ts',
-				'sites/**/*',
 			],
 			parserOptions: {
 				ecmaFeatures: {
-					jsx: true,
+					jsx: false,
 				},
 				project: 'tsconfig.node.json',
 			},

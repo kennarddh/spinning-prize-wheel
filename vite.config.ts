@@ -1,9 +1,10 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 
 // Plugin
-import eslintPlugin from 'vite-plugin-eslint'
-import svgr from 'vite-plugin-svgr'
+import path from 'node:path'
 import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
+import eslint from 'vite-plugin-eslint'
 
 import { resolve } from 'path'
 
@@ -26,30 +27,37 @@ export const resolveAlias = Object.entries(relativeAlias).reduce(
 	{}
 )
 
-// https://vitejs.dev/config/
-export default defineConfig(() => {
-	return {
-		plugins: [react(), eslintPlugin(), svgr()],
-		resolve: {
-			alias: resolveAlias,
+export default defineConfig({
+	plugins: [
+		react(),
+		dts({
+			insertTypesEntry: true,
+			outputDir: 'dist',
+			exclude: ['sites'],
+			entryRoot: 'src',
+		}),
+		eslint(),
+	],
+	resolve: {
+		alias: resolveAlias,
+	},
+	build: {
+		sourcemap: true,
+		lib: {
+			entry: path.resolve(__dirname, 'src/index.ts'),
+			name: 'SpinningPrizeWheel',
+			formats: ['es', 'umd'],
+			fileName: format => `spinning-prize-wheel.${format}.js`,
 		},
-		build: {
-			lib: {
-				entry: resolve(__dirname, 'src/index.ts'),
-				name: 'spinningPrizeWheel',
-				formats: ['es', 'umd'],
-				fileName: format => `spinning-prize-wheel.${format}.js`,
-			},
-			rollupOptions: {
-				external: ['react', 'react-dom', 'styled-components'],
-				output: {
-					globals: {
-						react: 'React',
-						'react-dom': 'ReactDOM',
-						'styled-components': 'styled',
-					},
+		rollupOptions: {
+			external: ['react', 'react-dom', 'styled-components'],
+			output: {
+				globals: {
+					react: 'React',
+					'react-dom': 'ReactDOM',
+					'styled-components': 'styled',
 				},
 			},
 		},
-	}
+	},
 })

@@ -35,8 +35,7 @@ npm i @kennarddh/spinning-prize-wheel
 
 ### Example
 
-```reacttypescript
-
+```typescriptreact
 const App: FC = () => {
 	const [RarityGroups] = useState<IRarityGroups>({
 		common: {

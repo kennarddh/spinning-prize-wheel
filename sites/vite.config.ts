@@ -36,6 +36,7 @@ export default defineConfig(({ mode }) => {
 	const appEnv = loadEnv(mode, process.cwd(), envPrefix)
 
 	return {
+		base: '/spinning-prize-wheel/',
 		plugins: [react(), svgr()],
 		resolve: {
 			alias: resolveAlias,

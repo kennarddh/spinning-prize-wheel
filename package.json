@@ -1,9 +1,10 @@
 {
-	"name": "reactjs-boilerplate",
+	"name": "@kennarddh/spinning-prize-wheel",
 	"version": "1.0.0",
-	"description": "React js boilerplate",
-	"main": "src/index.js",
+	"description": "Spinning Prize Wheel",
+	"main": "dist/spinning-prize-wheel.es.d.ts",
 	"scripts": {
+		"prepublish": "npm run build",
 		"build": "tsc && vite build",
 		"lint:check": "eslint {src,sites}/**/*.{ts,tsx}",
 		"lint:fix": "eslint --fix {src,sites}/**/*.{ts,tsx}",
@@ -27,7 +28,8 @@
 		"react",
 		"reactjs",
 		"boilerplate",
-		"vite"
+		"vite",
+		"spinning-prize-wheel"
 	],
 	"author": "kennarddh",
 	"license": "MIT",
@@ -82,5 +84,8 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"styled-components": "^5.3.5"
-	}
+	},
+	"files": [
+		"dist/**/*"
+	]
 }

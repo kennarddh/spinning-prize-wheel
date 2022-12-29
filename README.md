@@ -36,6 +36,14 @@ npm i @kennarddh/spinning-prize-wheel
 ### Example
 
 ```typescriptreact
+import { FC, useRef, useState } from 'react'
+
+import LuckyWheel, {
+	IRarityGroups,
+	IChoices,
+	ILuckyWheel,
+} from 'spinning-prize-wheel'
+
 const App: FC = () => {
 	const [RarityGroups] = useState<IRarityGroups>({
 		common: {

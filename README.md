@@ -2,6 +2,8 @@
 
 [Demo](https://kennarddh.github.io/spinning-prize-wheel/)
 
+[Demo Source](https://github.com/kennarddh/spinning-prize-wheel/tree/main/sites)
+
 ## Install
 
 ```bash

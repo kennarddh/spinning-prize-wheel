@@ -21,21 +21,20 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/kennarddh/reactjs-boilerplate.git"
+		"url": "git+https://github.com/kennarddh/spinning-prize-wheel.git"
 	},
 	"keywords": [
 		"react",
 		"reactjs",
-		"boilerplate",
 		"vite",
 		"spinning-prize-wheel"
 	],
 	"author": "kennarddh",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/kennarddh/reactjs-boilerplate/issues"
+		"url": "https://github.com/kennarddh/spinning-prize-wheel/issues"
 	},
-	"homepage": "https://github.com/kennarddh/reactjs-boilerplate#readme",
+	"homepage": "https://github.com/kennarddh/spinning-prize-wheel#readme",
 	"devDependencies": {
 		"@babel/core": "^7.20.7",
 		"@babel/preset-env": "^7.20.2",

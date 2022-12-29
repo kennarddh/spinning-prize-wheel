@@ -21,6 +21,6 @@
 		"noImplicitAny": true,
 		"types": ["jest", "@testing-library/jest-dom"]
 	},
-	"include": ["src"],
+	"include": ["src", "../dist"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

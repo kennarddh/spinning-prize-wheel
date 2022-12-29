@@ -1,5 +1,7 @@
 # Spinning Prize Wheel
 
+[Demo](https://kennarddh.github.io/spinning-prize-wheel/)
+
 ## Install
 
 ```bash

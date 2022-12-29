@@ -1,6 +1,6 @@
 {
 	"name": "@kennarddh/spinning-prize-wheel",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Spinning Prize Wheel",
 	"main": "dist/spinning-prize-wheel.es.d.ts",
 	"scripts": {

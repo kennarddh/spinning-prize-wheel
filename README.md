@@ -44,7 +44,7 @@ import LuckyWheel, {
 	IRarityGroups,
 	IChoices,
 	ILuckyWheel,
-} from 'spinning-prize-wheel'
+} from '@kennarddh/spinning-prize-wheel'
 
 const App: FC = () => {
 	const [RarityGroups] = useState<IRarityGroups>({
@@ -118,7 +118,7 @@ const App: FC = () => {
 	console.log(Counter)
 
 	return (
-		<Container>
+		<div>
 			<LuckyWheel
 				rotateDuration={3}
 				rarityGroups={RarityGroups}
@@ -134,7 +134,7 @@ const App: FC = () => {
 				<button onClick={Rotate}>Rotate</button>
 				<button onClick={Reset}>Reset</button>
 			</div>
-		</Container>
+		</div>
 	)
 }
 ```

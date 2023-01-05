@@ -2,7 +2,7 @@
 	"name": "@kennarddh/spinning-prize-wheel",
 	"version": "1.0.3",
 	"description": "Spinning Prize Wheel",
-	"main": "dist/spinning-prize-wheel.es.d.ts",
+	"main": "dist/spinning-prize-wheel.es.js",
 	"scripts": {
 		"prepublish": "npm run build",
 		"build": "tsc && vite build",
